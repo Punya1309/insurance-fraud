@@ -1,2 +1,4 @@
 # insurance-fraud
-a website that checks the insurance plan is geniune or not by searching up the relative details and informing the user everything about it
+# Insurance Verifier AI
+
+A hackathon project that analyzes insurance policies and detects potential fraud using AI + rule-based logic.
