@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insurance Verifier AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>Insurance Policy Verifier 🔍</h1>
+
+<textarea id="inputText" placeholder="Paste insurance policy here..."></textarea>
+
+<button onclick="analyze()">Analyze</button>
+
+<div id="result"></div>
+
+<script>
+function analyze() {
+    const text = document.getElementById("inputText").value;
+
+    fetch("/analyze", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text: text })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("result").innerHTML = `
+            <h2>Risk Score: ${data.score}</h2>
+            <h3>Issues:</h3>
+            <ul>${data.issues.map(i => `<li>${i}</li>`).join("")}</ul>
+            <h3>AI Analysis:</h3>
+            <pre>${data.ai}</pre>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>
